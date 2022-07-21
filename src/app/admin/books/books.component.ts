@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IBooks } from 'src/app/models/IBooks';
 import { BookService } from 'src/app/services/book.service';
+import {ViewChild, ElementRef} from '@angular/core';
 
 @Component({
   selector: 'app-books',
@@ -10,8 +11,10 @@ import { BookService } from 'src/app/services/book.service';
   styleUrls: ['../admin.component.css']
 })
 export class BooksComponent implements OnInit {
+  @ViewChild('closeBtn') closeBtn: ElementRef;
+  @ViewChild('closeBtnEdit') closeBtnEdit: ElementRef;
   title;author;copies;days;penalty;
-  constructor(private route:Router, public bookservice:BookService) { }
+  constructor(private route:Router, public bookservice:BookService, private fb: FormBuilder) { }
 
   public books = [];
   bookform;
@@ -19,7 +22,14 @@ export class BooksComponent implements OnInit {
 
   ngOnInit() {
     this.bookservice.getBooks().subscribe(data => this.books = data);
-
+    this.bookform = this.fb.group({
+      title: ['', [Validators.required, Validators.minLength(5)]],
+      status: ['', [Validators.required,]],
+      copies: ['', [Validators.required, Validators.min(1)]],
+      author: [''],
+      penalty: [''],
+      days: ['']
+    })
     
   }
 
@@ -27,15 +37,21 @@ export class BooksComponent implements OnInit {
   {
     let error_message = '';
     if(!this.title)
-      error_message = 'Plese enter the title';
+      error_message = 'Please enter the title';
     else if(!this.author)
-      error_message = 'Plese enter the author name';
+      error_message = 'Please enter the author name';
     else if(!this.copies)
-      error_message = 'Plese enter the copies';
+      error_message = 'Please enter the copies';
+    else if(this.copies <= 0)
+      error_message = 'Please enter copies more than 1';
     else if(!this.days)
-      error_message = 'Plese enter the days';
+      error_message = 'Please enter the days';
+    else if(this.days <= 0)
+      error_message = 'Please enter days more than 1';
     else if(!this.penalty)
-      error_message = 'Plese enter the penalty';
+      error_message = 'Please enter the penalty';
+    else if(this.penalty <= 0)
+      error_message = 'Please enter penalty more than 1';
     
     if(error_message)
     {
@@ -46,9 +62,10 @@ export class BooksComponent implements OnInit {
   }
 
   onSubmit(data) {
+    console.log(data);
+    data['avlCopies'] = data.copies;
     if(this.validate())
     {
-      console.log(data);
       let cnf = confirm("Press Ok to add book");
       if (cnf == true) {
         /*post method calling*/
@@ -58,12 +75,15 @@ export class BooksComponent implements OnInit {
           {
             alert("Books inserted successfully");
             this.resetData();
+            this.closeBtn.nativeElement.click();
+            this.bookform.reset();
+            this.ngOnInit();
           },
           error => console.error('Error!', error)
         );
-  
-        this.bookform.reset();
-      }
+       
+    }
+       
     }
     
   }
@@ -81,13 +101,9 @@ export class BooksComponent implements OnInit {
     console.log(currentBook.id);
     if (currentBook.id != null) {
       console.log("Update!!");
-      if(this.validate())
-      {
-        let cnf = confirm("Press Ok to update the book");
+      let cnf = confirm("Press Ok to update the book");
         if (cnf == true) {
           this.update(currentBook);
-
-        }
       }
 
     }
@@ -98,6 +114,9 @@ export class BooksComponent implements OnInit {
       {
         alert("Book updated successfully");
         this.resetData();
+        this.closeBtnEdit.nativeElement.click();
+        this.bookform.reset();
+        this.ngOnInit();
       },
       error => console.error('Error!', error));
   }
