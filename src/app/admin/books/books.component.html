@@ -41,8 +41,8 @@
                               </div>
                               <div class="form-group">
                                   <label for="image">Cover Image</label><br>
-                                  <label *ngFor="let image of images" >
-                                    <input type="radio" name="imagePath" value={{image}} checked ngModel>
+                                  <label *ngFor="let image of images; let idx = index" >
+                                    <input type="radio" name="imagePath" value={{image}} [checked]="(idx === 0)" ngModel>
                                     <img src={{image}} alt="Option 1" width="200" height="200">
                                   </label>
                               </div>

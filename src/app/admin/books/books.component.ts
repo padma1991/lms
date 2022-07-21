@@ -42,15 +42,15 @@ export class BooksComponent implements OnInit {
       error_message = 'Please enter the author name';
     else if(!this.copies)
       error_message = 'Please enter the copies';
-    else if(this.copies <= 0)
+    else if(this.copies <= 1)
       error_message = 'Please enter copies more than 1';
     else if(!this.days)
       error_message = 'Please enter the days';
-    else if(this.days <= 0)
+    else if(this.days <= 1)
       error_message = 'Please enter days more than 1';
     else if(!this.penalty)
       error_message = 'Please enter the penalty';
-    else if(this.penalty <= 0)
+    else if(this.penalty <= 1)
       error_message = 'Please enter penalty more than 1';
     
     if(error_message)
@@ -100,7 +100,8 @@ export class BooksComponent implements OnInit {
   OnUpdate(currentBook) {
     console.log(currentBook.id);
     if (currentBook.id != null) {
-      console.log("Update!!");
+      console.log("Update!!"+currentBook.copies);
+      currentBook['avlCopies'] = currentBook.copies;
       let cnf = confirm("Press Ok to update the book");
         if (cnf == true) {
           this.update(currentBook);
