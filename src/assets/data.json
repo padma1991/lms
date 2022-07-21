@@ -1,0 +1,151 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "admin@gmail.com",
+      "password": "1234",
+      "name": "Admin",
+      "role": 0
+    },
+    {
+      "id": 2,
+      "email": "libuser1@gmail.com",
+      "password": "1234",
+      "name": "Lib User",
+      "role": 1
+    }
+    ,
+    {
+      "id": 3,
+      "email": "libuser2@gmail.com",
+      "password": "1234",
+      "name": "Lib User 2",
+      "role": 1
+    }
+  ],
+  "books": [
+    {
+      "id": 1,
+      "title": "You can win",
+      "author": "Shiv Kera S",
+      "copies": 10,
+      "penalty": 5,
+      "days": 3,
+      "status": 1,
+      "imagePath": "../../assets/images/book.jpg",
+      "avlCopies": 10
+    },
+    {
+      "id": 2,
+      "title": "The English Teacher",
+      "author": "RK Narayan",
+      "copies": 10,
+      "penalty": 5,
+      "days": 3,
+      "status": 1,
+      "imagePath": "../../assets/images/book.jpg",
+      "avlCopies": 10
+    },
+    {
+      "id": 3,
+      "title": "Untouchable ",
+      "author": "Mulk Raj Anand",
+      "copies": 10,
+      "penalty": 5,
+      "days": 3,
+      "status": 1,
+      "imagePath": "../../assets/images/book.jpg",
+      "avlCopies": 10
+    },
+    {
+      "id": 4,
+      "title": "The Great Indian Novel",
+      "author": "Shashi Tharoor",
+      "copies": 10,
+      "penalty": 5,
+      "days": 3,
+      "status": 1,
+      "imagePath": "../../assets/images/book.jpg",
+      "avlCopies": 10
+    },
+    {
+      "id": 5,
+      "title": "The Blue Umbrella",
+      "author": "Ruskin Bond",
+      "copies": 10,
+      "penalty": 5,
+      "days": 3,
+      "status": 1,
+      "imagePath": "../../assets/images/book.jpg",
+      "avlCopies": 10
+    }
+  ],
+  "transactions": [
+    {
+      "id": 1,
+      "userid": 2,
+      "username": "Lib User",
+      "bookid": 1,
+      "bookname": "You can win",
+      "days": 3,
+      "checkindate": "2022-07-17",
+      "checkoutdate": "2022-07-20",
+      "penaltyfee": 5,
+      "status": 1,
+      "penalty": false
+    },
+    {
+      "id": 2,
+      "userid": 2,
+      "username": "Lib User",
+      "bookid": 2,
+      "bookname": "The English Teacher",
+      "days": 3,
+      "checkindate": "2022-07-15",
+      "checkoutdate": "2022-07-18",
+      "penaltyfee": 5,
+      "status": 0,
+      "penalty": true,
+      "fine": 10
+    },
+    {
+      "id": 3,
+      "userid": 4,
+      "username": "Lib User 3",
+      "bookid": 10,
+      "bookname": "Sample",
+      "days": 3,
+      "checkindate": "2022-07-17",
+      "checkoutdate": "2022-07-20",
+      "penaltyfee": 5,
+      "status": 1,
+      "penalty": false
+    },
+    {
+      "id": 4,
+      "userid": 1,
+      "username": "abc",
+      "bookid": 11,
+      "bookname": "ABC Book",
+      "days": 3,
+      "checkindate": "2022-07-18",
+      "checkoutdate": "2022-07-21",
+      "penaltyfee": 5,
+      "status": 1,
+      "penalty": false
+    },
+    {
+      "id": 5,
+      "userid": 4,
+      "username": "Lib User 4",
+      "bookid": 1,
+      "bookname": "You can win",
+      "days": 3,
+      "checkindate": "2022-07-17",
+      "checkoutdate": "2022-07-20",
+      "penaltyfee": 5,
+      "status": 1,
+      "penalty": false
+    }
+  ]
+}

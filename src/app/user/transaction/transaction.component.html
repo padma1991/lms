@@ -1,0 +1,42 @@
+
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="card" *ngIf="trans.length > 0">
+      <table class="table">
+        <thead class="thead bg-dark text-light">
+            <tr>
+                
+                <th scope="col">ID</th>
+                <th scope="col">USER</th>
+                <th scope="col">BOOK</th>
+                <th scope="col">CHECK IN DATE</th>
+                <th scope="col">CHECK OUT DATE</th>
+                <th scope="col">PENALTY</th>
+                <th scope="col">ACTION</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let tran of trans">
+                <td>{{tran.id}}</td>
+                <td>{{tran.username}}</td>
+                <td>{{tran.bookname}}</td>
+                <td>{{tran.checkindate}}</td>
+                <td>{{tran.checkoutdate}}</td>
+                <td>{{tran.fine}}</td>
+                <td>
+                  <button *ngIf="tran.fine <= 0 && tran.status == 1" type="button" class="btn btn-outline-danger" (click)="checkout(tran)">CHECK OUT</button>
+                  <button *ngIf="tran.fine > 0 && tran.penalty == false && tran.status == 1" type="button" class="btn btn-outline-danger" (click)="paypenalty(tran)">PAY PENALTY</button>
+                  <span *ngIf="tran.fine > 0 && tran.penalty == true && tran.status == 1" >Requested admin</span>
+                  <span *ngIf="tran.status == 0" >Complete</span>
+                </td>
+
+            </tr>
+          </tbody>
+        </table>
+    </div>
+    <div class="card" *ngIf="trans.length <= 0">
+      <span align="center">No data found</span>
+    </div>
+  </div>
+</div>

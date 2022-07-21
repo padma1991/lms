@@ -1,0 +1,13 @@
+<body class="text-center">
+  <form class="form-signin" #userlogin = "ngForm" (ngSubmit) = "onClickSubmit(userlogin.value)">
+    <img class="mb-4" src="../../assets/images/bootstrap-solid.svg" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" id="login"  class="form-control" placeholder="Email address" name="uid" ngModel required autofocus />
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="password" class="form-control" placeholder="Password" name="pwd" ngModel required /> 
+    <div class="checkbox mb-5"></div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted"></p>
+  </form>
+</body>

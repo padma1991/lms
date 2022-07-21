@@ -1,0 +1,10 @@
+FROM node:alpine    
+
+EXPOSE 3000
+
+COPY ./src/assets/data.json /opt/data.json
+
+RUN yarn global add json-server
+
+CMD ["json-server", "-H", "0.0.0.0", "/opt/data.json"]
+

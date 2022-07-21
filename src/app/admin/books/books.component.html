@@ -1,0 +1,260 @@
+
+    <div>
+      <!-- <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#adminBookModal"><img
+              style="padding-bottom: 3px; width: 40px; font-size: smaller;"
+              src=".\assets\icons\icons8-add-50 (1).png" alt="">ADD BOOKS</button> -->
+      <div class="modal fade" id="adminBookModal" tabindex="-1" role="dialog"
+          aria-labelledby="adminBookModalTitle" aria-hidden="true">
+          <form #bookform = "ngForm" (ngSubmit)="onSubmit(bookform.value)">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <!-- button sections.. -->
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="adminBookModalTitle">Add a book</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <div aria-hidden="true">&times;</div>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                          <!-- form section.... -->
+                          <div>
+                              <div class="form-group">
+                                  <label for="title">Book title</label>
+                                  <input type="text" class="form-control" id="title" name="title"
+                                      placeholder="Enter book title" [(ngModel)]="title">
+                                  <!-- <span
+                                      *ngIf="bookform.get('title') && (bookform.get('title').touched||bookform.get('title').dirty) && bookform.get('title').invalid">
+                                      <span *ngIf="bookform.get('title').errors.required">
+                                          *this field is required...
+                                      </span>
+                                      <span *ngIf="bookform.get('title').errors.minlength">
+                                          *atleast 5 characters is required...
+                                      </span>
+
+                                  </span> -->
+                              </div>
+
+                              <div class="form-group">
+                                  <label for="author">Author</label>
+                                  <input type="text" class="form-control" id="author"
+                                      placeholder="Enter book author" name="author"  [(ngModel)]="author">
+                              </div>
+                              <div class="form-group">
+                                  <label for="image">Cover Image</label><br>
+                                  <label *ngFor="let image of images" >
+                                    <input type="radio" name="imagePath" value={{image}} checked ngModel>
+                                    <img src={{image}} alt="Option 1" width="200" height="200">
+                                  </label>
+                              </div>
+                              <div class="form-group">
+                                <label for="penalty">Penalty</label>
+                                <input type="text" class="form-control" id="penalty"
+                                    placeholder="Enter penalty" name="penalty"  [(ngModel)]="penalty">
+                            </div>
+                              <div class="form-group">
+                                  <label for="copies">Copies</label>
+                                  <input type="number" class="form-control" id="copies" name="copies"
+                                      placeholder="Enter the number of copies"  [(ngModel)]="copies">
+                                  <!-- <span
+                                      *ngIf="bookform.get('copies') && (bookform.get('copies').touched||bookform.get('copies').dirty) && bookform.get('copies').invalid">
+                                      <span *ngIf="bookform.get('copies').errors.required">
+                                          *this field is required...
+                                      </span>
+                                      <span *ngIf="bookform.get('copies').errors.min">
+                                          *atleast 1 number is required...
+                                      </span>
+
+                                  </span> -->
+                              </div>
+                              <div class="form-group">
+                                  <label for="days">No of days</label>
+                                  <input type="text" class="form-control" id="days" name="days"
+                                      placeholder="Enter no. of days to borrow"  [(ngModel)]="days">
+
+                              </div>
+                              <div class="form-group">
+                                  <label for="status">Status</label>
+
+                                  <select class="form-control" id="status" name="status"
+                                  ngModel>
+
+                                      <option value="1" selected>Active</option>
+                                      <option value="0">InActive</option>
+
+                                  </select>
+                                  <!-- <span
+                                      *ngIf="bookform.get('status') && bookform.get('status').touched && bookform.get('status').invalid">
+                                      *this field is required...
+                                  </span> -->
+                              </div>
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-danger"
+                              [disabled]="bookform.invalid">Save</button>
+                      </div>
+                  </div>
+              </div>
+          </form>
+      </div>
+      
+  </div>
+  <div>
+    <div class="modal fade" id="adminBookModalUp" tabindex="-1" role="dialog"
+        aria-labelledby="adminBookModalUpTitle" aria-hidden="true">
+        <form #editbookform = "ngForm" (ngSubmit)="OnUpdate(bookservice.currentBook)">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="adminBookModalUpTitle">Update a book
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <div aria-hidden="true">&times;</div>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div>
+                            <div class="form-group">
+                                <label for="title">Book title</label>
+                                <input type="text" class="form-control" id="title"
+                                    name="title" placeholder="Enter book title"
+                                    [(ngModel)]="bookservice.currentBook.title">
+                                <!-- <span
+                                    *ngIf="adminBooksUp.get('btitle') && (adminBooksUp.get('btitle').touched||adminBooksUp.get('btitle').dirty) && adminBooksUp.get('btitle').invalid">
+                                    <span
+                                        *ngIf="adminBooksUp.get('btitle').errors.required">
+                                        *this field is required...
+                                    </span>
+                                    <span
+                                        *ngIf="adminBooksUp.get('btitle').errors.minlength">
+                                        *atleast 5 characters is required...
+                                    </span>
+
+                                </span> -->
+                            </div>
+                            <div class="form-group">
+                                <label for="author">Author</label>
+                                <input type="text" class="form-control" id="author"
+                                    placeholder="Enter book author" name="author"
+                                    [(ngModel)]="bookservice.currentBook.author">
+                            </div>
+                            <div class="form-group">
+                              <label for="image">Cover Image</label><br>
+                              <label *ngFor="let image of images" >
+                                <input type="radio" name="imagePath" value={{image}} checked [(ngModel)]="bookservice.currentBook.imagePath">
+                                <img src={{image}} alt="Option 1" width="200" height="200">
+                              </label>
+                          </div>
+                            <div class="form-group">
+                              <label for="penalty">Penalty</label>
+                              <input type="text" class="form-control" id="penalty"
+                                  placeholder="Enter penalty" name="penalty"
+                                  [(ngModel)]="bookservice.currentBook.penalty">
+                          </div>
+                            <div class="form-group">
+                                <label for="copies">Copies</label>
+                                <input type="number" class="form-control" id="copies"
+                                    name="copies" placeholder="Enter the number of copies"
+                                    [(ngModel)]="bookservice.currentBook.copies">
+                                <!-- <span
+                                    *ngIf="adminBooksUp.get('bcopies') && (adminBooksUp.get('bcopies').touched||adminBooksUp.get('bcopies').dirty) && adminBooksUp.get('bcopies').invalid">
+                                    <span
+                                        *ngIf="adminBooksUp.get('bcopies').errors.required">
+                                        *this field is required...
+                                    </span>
+                                    <span *ngIf="adminBooksUp.get('bcopies').errors.min">
+                                        *atleast 1 number is required...
+                                    </span>
+
+                                </span> -->
+                            </div>
+                            <div class="form-group">
+                              <label for="days">No of days</label>
+                              <input type="text" class="form-control" id="days" name="days"
+                                  placeholder="Enter no. of days to borrow"  
+                                  [(ngModel)]="bookservice.currentBook.days">
+
+                          </div>
+                            <div class="form-group">
+                                <label for="status">Status</label>
+
+                                <select class="form-control" id="status" name="status"
+                                    [(ngModel)]="bookservice.currentBook.status">
+
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactive</option>
+
+                                </select>
+                                <!-- <span
+                                    *ngIf="adminBooksUp.get('bstatus') && adminBooksUp.get('bstatus').touched && adminBooksUp.get('bstatus').invalid">
+                                    *this field is required...
+                                </span> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger"
+                            
+                            >Update</button>
+                        <!-- (click)="OnUpdate(bookSer.currentBook)" -->
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+  </div>
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Library Management System</h1>
+      </div>
+    </div>
+  </section>
+  <div class="container">
+    <button class="bttn" style="float: right;" data-toggle="modal" data-target="#adminBookModal"><i class="fa fa-plus" ></i> Add Book</button>
+  </div>  
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-3 row-cols-md-4 g-3">
+        <div *ngFor="let book of books">
+          <div class="col">
+            <div class="card ">
+              <div class="container"  >
+                <img src={{book.imagePath}} class="bd-placeholder-img card-img-top" alt="{{book.title}}" width="100%" height="200"  style="object-fit: fill; margin-top: 8px;">
+              </div>
+              <div class="card-body">
+                <div class="card-text">
+                  <div class="row">
+                    <div class="col-md-12">
+                        <h6>{{book.title}}</h6>
+                    </div>
+                    <div class="col-md-12">
+                      <small class="text-muted">by {{book.author}}</small>
+                  </div>
+                  </div>
+                </div>
+                <p></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal"
+                    data-target="#adminBookModalUp" (click)="edit(book)">Update</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" (click)="delete(book)">Remove</button>
+                  </div>
+                  <div><small class="text-muted">{{book.avlCopies}}/{{book.copies}}</small></div>
+                  <div *ngIf="book.status == 1;then content else nocontent"></div>
+                  <ng-template #content> <span class="activedot"></span></ng-template>
+                  <ng-template #nocontent><span class="inactivedot"></span></ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

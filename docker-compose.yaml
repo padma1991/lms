@@ -1,0 +1,20 @@
+version: '2.1'
+services:
+
+  jsonserver:
+    image: jns:1.0.0
+    container_name: jns
+    restart: unless-stopped
+    ports:
+      - 5002:3000
+    volumes:
+      - ./src/assets/data.json:/opt/data.json
+
+  lms:
+    image: lms:1.0.0
+    container_name: lms
+    restart: unless-stopped
+    ports:
+      - 3700:80
+    depends_on:
+      - jsonserver

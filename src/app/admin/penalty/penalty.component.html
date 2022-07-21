@@ -1,0 +1,31 @@
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="card">
+      <table class="table">
+        <thead class="thead bg-dark text-light">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">USER</th>
+            <th scope="col">BOOK</th>
+            <th scope="col">CHECK IN DATE</th>
+            <th scope="col">CHECK OUT DATE</th>
+            <th scope="col">PENALTY</th>
+            <th scope="col">CHECKOUT STATUS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tran of trans">
+            <td>{{tran.id}}</td>
+            <td>{{tran.username}}</td>
+            <td>{{tran.bookname}}</td>
+            <td>{{tran.checkindate}}</td>
+            <td>{{tran.checkoutdate}}</td>
+            <td>{{tran.fine}}</td>
+            <td *ngIf="tran.penalty == true && tran.status == 1"><button type="button" class="btn btn-outline-danger" (click)="onComplete(tran)">COMPLETE</button></td>
+            <td *ngIf="tran.penalty == true && tran.status == 0">Complete</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

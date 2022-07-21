@@ -1,0 +1,2 @@
+# lms
+Libraries are full of physical books. Keeping track of every single one of them is important. It is also  important for people to be able to borrow them. As a librarian, it becomes an important job to keep  track of the books checked in and out of a library. Your job is to build a library management system  that helps curator to add/remove books from the inventory and a user to borrow and return them.
